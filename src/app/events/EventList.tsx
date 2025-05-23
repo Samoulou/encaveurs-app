@@ -1,7 +1,6 @@
 'use client'
 
-//TODO: change type
-export default function EventList({ events }: { events: any[] }) {
+export default function EventList({ events }: { events: wineEvent[] }) {
   if (events.length === 0) return <p>Aucun événement pour le moment.</p>
 
   return (

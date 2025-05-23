@@ -5,16 +5,8 @@ import { supabase } from '@/lib/supabase';
 import CreateEventForm from '@/components/CreateEventForm';
 import EventList from './EventList'
 
-
-type Event = {
-  id: string;
-  title: string;
-  date: string;
-  location: string;
-};
-
 export default function EventPage() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<wineEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchEvents = async () => {
