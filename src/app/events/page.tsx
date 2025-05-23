@@ -1,8 +1,10 @@
-// app/events/page.tsx
 'use client'
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import CreateEventForm from '@/components/CreateEventForm';
+import EventList from './EventList'
+
 
 type Event = {
   id: string;
@@ -11,36 +13,30 @@ type Event = {
   location: string;
 };
 
-export default function EventsPage() {
+export default function EventPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const { data, error } = await supabase.from('wineevents').select('*');
-      if (error) {
-        console.error('Erreur de chargement:', error.message);
-      } else {
-        setEvents(data);
-      }
-      setLoading(false);
-    };
+  const fetchEvents = async () => {
+        const { data, error } = await supabase.from('wineevents').select('*');
+        if (error) {
+          console.error('Erreur de chargement:', error.message);
+        } else {
+          setEvents(data);
+        }
+        setLoading(false);
+      };
 
+  useEffect(() => {
     fetchEvents();
   }, []);
 
   if (loading) return <p>Chargement...</p>;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Liste des événements</h1>
-      <ul className="space-y-2">
-        {events.map((event) => (
-          <li key={event.id} className="border rounded p-2">
-            <strong>{event.title}</strong> – {event.date} à {event.location}
-          </li>
-        ))}
-      </ul>
+ <div className="space-y-4">
+      <CreateEventForm onEventCreated={fetchEvents} />
+      <EventList events={events} />
     </div>
   );
 }
