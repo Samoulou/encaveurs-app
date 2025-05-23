@@ -1,4 +1,5 @@
 'use client'
+import { wineEvent } from '@/types/wineEvent';
 
 export default function EventList({ events }: { events: wineEvent[] }) {
   if (events.length === 0) return <p>Aucun événement pour le moment.</p>
