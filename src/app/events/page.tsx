@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import CreateEventForm from '@/components/CreateEventForm';
 import EventList from './EventList'
+import { wineEvent } from '@/types/wineEvent';
 
 export default function EventPage() {
   const [events, setEvents] = useState<wineEvent[]>([]);
