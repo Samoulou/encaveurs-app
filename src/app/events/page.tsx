@@ -1,35 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
-import CreateEventForm from '@/components/CreateEventForm';
-import EventList from './EventList'
-import { wineEvent } from '@/types/wineEvent';
+import { useEffect } from 'react';
+import { useEvents } from './events.hooks'
+import CreateEventForm from '@/app/events/components/CreateEventForm';
+import EventList from './components/EventList'
 
 export default function EventPage() {
-  const [events, setEvents] = useState<wineEvent[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchEvents = async () => {
-        const { data, error } = await supabase.from('wineevents').select('*');
-        if (error) {
-          console.error('Erreur de chargement:', error.message);
-        } else {
-          setEvents(data);
-        }
-        setLoading(false);
-      };
+  const { events, loadEvents, addEvent } = useEvents()
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  if (loading) return <p>Chargement...</p>;
+    loadEvents()
+  }, [loadEvents])
 
   return (
- <div className="space-y-4">
-      <CreateEventForm onEventCreated={fetchEvents} />
+    <div className="space-y-4">
+      <CreateEventForm onSubmit={addEvent} />
       <EventList events={events} />
     </div>
-  );
+  )
 }
