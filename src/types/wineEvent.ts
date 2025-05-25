@@ -1,6 +1,5 @@
-export type wineEvent = {
-  id: string;
-  title: string;
-  date: string;
-  location: string;
-};
+export type WineEvent = {
+  title: string
+  location: string
+  date: Date
+}
