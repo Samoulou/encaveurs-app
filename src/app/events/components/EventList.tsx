@@ -1,7 +1,7 @@
 'use client'
-import { wineEvent } from '@/types/wineEvent';
+import { WineEvent } from '@/types/wineEvent';
 
-export default function EventList({ events }: { events: wineEvent[] }) {
+export default function EventList({ events }: { events: WineEvent[] }) {
   //TODO : refactor en truc stylé
   if (events.length === 0) return <p>Aucun événement pour le moment.</p>
 
