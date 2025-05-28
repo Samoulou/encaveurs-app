@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import EventList from './events/components/EventList'
 import EventFilters from '../components/EventFilters'
-import { useEvents } from './events/events.hooks'
+import { useEvents } from '../hooks/events.hooks'
 
 export default function HomePage() {
   const { events, loadEvents } = useEvents();
@@ -56,11 +56,7 @@ export default function HomePage() {
         setDate={setDate}
       />
 
-      {loading ? (
-        <p>Chargement des événements...</p>
-      ) : (
-        <EventList events={filteredEvents} />
-      )}
+  <EventList events={filteredEvents} isLoading={loading} />
     </main>
   );
 }
