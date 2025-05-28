@@ -1,6 +1,6 @@
 // src/app/events/[id]/page.tsx
 
-import { fetchEventById } from '@/app/events/events.service'; // Adaptez le chemin si besoin
+import { fetchEventById } from '@/api/events.service'; // Adaptez le chemin si besoin
 import { WineEvent } from '@/types/wineEvent';         // Adaptez le chemin si besoin
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
